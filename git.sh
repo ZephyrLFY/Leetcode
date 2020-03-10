@@ -4,4 +4,4 @@ read content
 
 git add .
 git commit -m "$content"
-git push
+git push origin master
