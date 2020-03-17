@@ -25,7 +25,7 @@ public:
         return lists[0];
     }
 
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+    ListNode* mergeTwoLists(ListNode*& l1, ListNode*& l2) {
         ListNode* temp = new ListNode(0);
         ListNode* head = temp;
         while(l1 && l2) {
