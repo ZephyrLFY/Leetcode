@@ -1,31 +1,28 @@
-import java.util.Deque;
-import java.util.ArrayDeque;
-
 class Solution {
-    public int maximalRectangle(char[][] matrix) {
-        // Corner Case
+    public int maximalSquare(char[][] matrix) {
         int rows = matrix.length;
         if (rows == 0) return 0;
         int cols = matrix[0].length;
 
         int[] heights = new int[cols];
+        int dp = 0;
         int res = 0;
+
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                //Update heights array for this row
+            for (int j = 0; j < cols; j++) { //For each row, deal heights[]
                 if (matrix[i][j] == '1') heights[j]++;
                 else heights[j] = 0;
             }
-            res = Math.max(res, largestRectangleArea(heights));
+
+            res = Math.max(res, largestSquareArea(heights));
         }
         return res;
     }
 
-    //Leetcode 84-Stack, solving largest rectangle in histogram
-    public int largestRectangleArea(int[] heights) {
+    public int largestSquareArea(int[] heights) {
         int len = heights.length;
         if (len == 0) return 0;
-        if (len == 1) return heights[0];
+        if (len == 1) return 1;
 
         //新建一个数组，两端设置哨兵0
         len += 2;
@@ -45,7 +42,8 @@ class Solution {
                 /*这一步中的宽度计算是精髓
                 * 即对于每一个高度
                 * 计算一次由两端卡住的最大面积*/
-                res = Math.max(res, curHeight * (i - stack.peekLast() - 1));
+                if (curHeight <= (i - stack.peekLast() - 1))
+                    res = Math.max(res, curHeight * curHeight);
             }
             stack.addLast(i);
         }
