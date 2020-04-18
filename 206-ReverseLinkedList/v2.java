@@ -15,9 +15,4 @@ class Solution {
         
         return head;
     }
-
-    public static void main(String[] agrs) {
-        var solu = new Solution();
-
-    }
 }

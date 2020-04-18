@@ -5,21 +5,18 @@ public class ListNode {
 }
 
 class Solution {
+    //双指针，cur记录当前要放到最后的Node，pre记录cur之后的，操作完在cur之前的Node
     public ListNode reverseList(ListNode head) {
-        if (head != null && head.next != null) {
-            var res = reverseList(head.next);
-            var temp = res;
-            while (temp.next != null) temp = temp.next;
-            temp.next = head;
-            head.next = null;
-            head = res;
+        ListNode cur = new ListNode();
+        ListNode pre = head;
+        while (pre != null) {
+            ListNode temp = pre.next;
+            pre.next = cur;
+            cur.next = null;
+            cur = pre;
+            pre = temp;
         }
         
-        return head;
-    }
-
-    public static void main(String[] agrs) {
-        var solu = new Solution();
-
+        return cur;
     }
 }
