@@ -22,11 +22,3 @@ public:
         return n + 1;
     }
 };
-
-int main()
-{
-    Solution solu;
-    vector<int> nums = {3,0,2,4};
-    cout << solu.firstMissingPositive(nums) << endl;
-    return 0;
-}
