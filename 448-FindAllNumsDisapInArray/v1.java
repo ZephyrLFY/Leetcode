@@ -19,13 +19,4 @@ class Solution {
         }
         return res;
     }
-
-    public static void main(String[] args) {
-        var solu = new Solution();
-        int[] nums = {4,3,2,7,8,2,3,1};
-        var res = solu.findDisappearedNumbers(nums);
-        for (int temp : res) {
-            System.out.print(temp + "\t");
-        }
-    }
 }
