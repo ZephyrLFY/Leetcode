@@ -10,9 +10,6 @@ public:
         for (int i = 0; i < n; i++) {
             while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {    
                 swap(nums[nums[i] - 1], nums[i]);
-                for(auto it = nums.begin(); it != nums.end(); it++)
-                    cout << *it << " ";
-                cout << i << endl;
             }
         }        
         for (int i = 0; i < n; i++) {
