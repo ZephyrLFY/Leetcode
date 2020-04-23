@@ -1,5 +1,5 @@
 class Solution {
-    public int minCameraCover(TreeNode root) {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
 
     }
 }
