@@ -1,6 +1,6 @@
 class Solution {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        
+    public int diameterOfBinaryTree(TreeNode root) {
+
     }
 }
 
