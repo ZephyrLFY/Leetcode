@@ -1,6 +1,6 @@
 class Solution {
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        
     }
 }
 
