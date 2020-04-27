@@ -13,7 +13,6 @@ public:
 
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int amount = nums1.size() + nums2.size();
-        cout << "Check1" << endl;
         vector<int> nums3(amount);
         int count = 0;
         while(count < amount) {

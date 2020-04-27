@@ -4,7 +4,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minCostClimbingStairs(vector<int>& cost) {
+    int splitArray(vector<int>& nums, int m) {
 
     }
 };
