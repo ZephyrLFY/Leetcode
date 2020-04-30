@@ -4,7 +4,14 @@ using namespace std;
 
 class Solution {
 public:
-    int rob_198(vector<int>& nums) {
+    int rob(vector<int>& nums) {
+        int len = nums.size();
+        if (len == 0) return 0;
+        if (len == 1) return nums[0];
+        return max(rob_198(vector<int>(nums.begin(), nums.end() - 1)), rob_198(vector<int>(nums.begin() + 1, nums.end())));
+    }
+
+    int rob_198(vector<int> nums) {
         int len = nums.size();
         if (len == 0) return 0;
         if (len == 1) return nums[0];

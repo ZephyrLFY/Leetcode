@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     public int climbStairs(int n) {
         if (n == 1) return 1;
@@ -12,12 +10,5 @@ class Solution {
             prer = temp;
         }
         return pre;
-    }
-
-    public static void main(String[] args) {
-        var solu = new Solution();
-        Scanner nums = new Scanner(System.in);
-        int num = nums.nextInt();
-        System.out.println(solu.climbStairs(num));
     }
 }
