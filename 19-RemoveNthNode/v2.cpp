@@ -10,21 +10,20 @@ struct ListNode {
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        if(head->next == NULL) {
-            head = NULL;
-            return head;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        for (int i = 0; i < n; i++) fast = fast->next;
+        while (fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next;
         }
-        ListNode* i1 = head;
-        ListNode* i2 = head;
-        bool flag = true;
-        while(flag) {
-            i1 = i1->next;
-            if(--n < 0) i2 = i2->next;
-            if(i1->next == NULL) flag = false;
+        if (head == slow && !fast) head = head->next;
+        else if (!slow->next->next) slow->next = nullptr;
+        else {
+            ListNode* temp = slow->next->next;
+            slow->next = temp;
         }
-        if(i2 == head && n == 1) head = head->next;
-        else if(i2->next->next == NULL) i2->next = NULL;
-        else i2->next = i2->next->next;
+        
         return head;
     }
 };
