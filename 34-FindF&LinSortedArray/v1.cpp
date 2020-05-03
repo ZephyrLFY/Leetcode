@@ -5,47 +5,31 @@ using namespace std;
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        int left = left_bound(nums, target);
-        int right = right_bound(nums, target);
-        vector<int> result = {left, right};
-        return result;
+        vector<int> res(2);
+        int len = nums.size() - 1;
+        res[0] = searchLower(nums, target, 0, len);
+        if (res[0] == -1) res[1] = -1;
+        else res[1] = searchUpper(nums, target, res[0], len);
+        return res;
     }
-
-    int left_bound(vector<int>& nums, int target) {
-        int left = 0, right = nums.size() - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] == target) {
-                // 别返回，收缩左侧边界
-                right = mid - 1;
-            }
+    
+    int searchLower(vector<int>& nums, int target, int left, int right) {
+        if (left > right) return -1;
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target){
+            if (mid == 0 || nums[mid - 1] != target) return mid;
         }
-        // 最后要检查 left 越界的情况
-        if (left >= nums.size() || nums[left] != target)
-            return -1;
-        return left;
+        if (nums[mid] < target) return searchLower(nums, target, mid + 1, right);
+        return searchLower(nums, target, left, mid - 1);
     }
-
-    int right_bound(vector<int>& nums, int target) {
-        int left = 0, right = nums.size() - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] == target) {
-                // 别返回，收缩右侧边界
-                left = mid + 1;
-            }
+    
+    int searchUpper(vector<int>& nums, int target, int left, int right) {
+        if (left > right) return -1;
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target){
+            if (mid == nums.size() - 1 || nums[mid + 1] != target) return mid;
         }
-        // 最后要检查 right 越界的情况
-        if (right < 0 || nums[right] != target)
-            return -1;
-        return right;
+        if (nums[mid] > target) return searchUpper(nums, target, left, mid - 1);
+        return searchUpper(nums, target, mid + 1, right);
     }
 };

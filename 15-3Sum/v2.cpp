@@ -1,41 +1,31 @@
 #include <iostream>
-#include <unordered_map>
-#include <set>
 #include <vector>
 using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > threeSum(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> res;
         int len = nums.size();
-        vector<vector<int> >result(0);
-        int rNum = -1;
-        for(int i = 0; i < len - 2; i++) {
-            int j = i + 1;
-            int k = len - 1;
-            if(nums[i] > 0) break;
-            else if(i > 0 && nums[i] == nums[i - 1]) continue;
-            while(j < k) {
+        int i = 0, j = 0, k = 0;
+        sort(nums.begin(), nums.end());
+        for (k = 0; k < len - 2; k++) {
+            i = k + 1;
+            j = len - 1;
+            if (nums[k] > 0) break;
+            if (k > 0 && nums[k] == nums[k - 1]) continue;
+            while (i < j) {
                 int sum = nums[i] + nums[j] + nums[k];
-                if(sum == 0) {
-                    rNum++;
-                    result.resize(rNum + 1);
-                    result[rNum] = {nums[i], nums[j],nums[k]};
-                    while(j < k && nums[j] == nums[++j]);
-                    while(j < k && nums[k] == nums[--k]);
+                if (sum == 0) {
+                    vector<int> temp = {nums[k], nums[i], nums[j]};
+                    res.push_back(temp);
+                    while (i < j && nums[i] == nums[++i]);
+                    while (j > i && nums[j] == nums[--j]);
                 }
-                else if(sum < 0) j++;
-                else k--;
+                else if (sum < 0) while (i < j && nums[i] == nums[++i]);
+                else while (j > i && nums[j] == nums[--j]);
             }
         }
-        return result;
+        return res;
     }
 };
-
-int main()
-{
-    Solution solu;
-    vector<int> nums = {-1, 0, 1, 2, -1, -4};
-    solu.threeSum(nums);
-}
