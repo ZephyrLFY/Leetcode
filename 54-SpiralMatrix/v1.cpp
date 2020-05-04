@@ -27,31 +27,3 @@ public:
         return res;
     }
 };
-
-int main()
-{
-    Solution solu;
-    vector<vector<int>> matrix;
-    vector<int> nums1 = {1};
-    matrix.push_back(nums1);
-    vector<int> nums2 = {2};
-    matrix.push_back(nums2);
-    vector<int> nums3 = {3};
-    matrix.push_back(nums3);
-    vector<int> nums4 = {4};
-    matrix.push_back(nums4);
-    vector<int> nums5 = {5};
-    matrix.push_back(nums5);
-    // vector<int> nums6 = {6};
-    // matrix.push_back(nums6);
-    // vector<int> nums7 = {7};
-    // matrix.push_back(nums7);
-    // vector<int> nums8 = {8};
-    // matrix.push_back(nums8);
-
-    // vector<int> nums4 = {13,14,15,16};
-    // matrix.push_back(nums4);
-    vector<int> res = solu.spiralOrder(matrix);
-    for (int temp : res) cout << temp << " ";
-    cout << endl;
-}

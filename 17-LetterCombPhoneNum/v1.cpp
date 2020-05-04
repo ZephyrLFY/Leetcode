@@ -4,6 +4,9 @@
 using namespace std;
 
 class Solution {
+private:
+    unordered_map<char, vector<string> > nums;
+    vector<string> pre;
 public:
     vector<string> letterCombinations(string digits) {
         nums['2'] = {"a", "b", "c"};
@@ -34,20 +37,4 @@ public:
             return pre;
         }
     }
-private:
-    unordered_map<char, vector<string> > nums;
-    vector<string> pre;
 };
-
-int main()
-{
-    Solution solu;
-    string nums;
-    //cin >> nums;
-    nums = {};
-    vector<string> result = solu.letterCombinations(nums);
-    for(vector<string>::iterator it = result.begin(); it != result.end(); it++) {
-        cout << *it << endl;
-    }
-    return 0;
-}
