@@ -36,26 +36,17 @@ public:
 		return dp.back();
 	}
 
-	bool wordBreak_139(string& s, vector<string>& wordDict)
-	{
-		size_t validEnd = 0;
-		vector<bool> dp(s.size() + 1, false);
-		dp[0] = true;
-		for (size_t i = 0; i < s.size(); i++)
-		{
-			if (i == validEnd + 1) return false;
-			if (!dp[i]) continue;
-			for (auto& word : wordDict)
-			{
-				size_t newEnd = i + word.size();
-				if (newEnd > s.size()) continue;
-				if (memcmp(&s[i], &word[0], word.size()) == 0)
-				{
-					dp[newEnd] = true;
-					validEnd = max(validEnd, newEnd);
-				}
-			}
-		}
-		return dp.back();
-	}
+	bool wordBreak_139(string& s, vector<string>& wordDict) {
+        int len = s.size();
+        vector<bool> dp(len + 1);
+        dp[0] = true;
+        for (int i = 1; i <= len; i++) {
+            for (string temp : wordDict) {
+                int wordLen = temp.size();
+                if (i >= wordLen && s.substr(i - wordLen, wordLen) == temp)
+                    dp[i] = dp[i] || dp[i - wordLen];
+            }
+        }
+        return dp[len];
+    }
 };

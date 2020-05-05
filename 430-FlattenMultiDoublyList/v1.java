@@ -28,28 +28,6 @@ class Solution {
         }
         return scan;
     }
-
-    public static void main(String[] args) {
-        var solu = new Solution();
-        // Node head = new Node(7);
-        // head.next = new Node(8);
-        // head.next.next = new Node(9);
-        // head.next.next.next = new Node(10);
-        // head.next.prev = head;
-        // head.next.next.prev = head.next;
-        // head.next.next.next.prev = head.next.next;
-        // head.next.child = new Node(11);
-        // head.next.child.next = new Node(12);
-        // head.next.child.next.prev = head.next.child;
-        Node head = new Node(4201);
-        head.child = new Node(1937);
-        head.child = new Node(3203);
-        solu.flatten(head);
-        while (head != null) {
-            System.out.print(head.val + " ");
-            head = head.next;
-        }
-    }
 }
 
 class Node {
