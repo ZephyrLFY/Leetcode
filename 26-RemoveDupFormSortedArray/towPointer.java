@@ -11,7 +11,7 @@ class Solution {
                 continue;
             }
 
-            nums[++i] = nums[j];
+            nums[++i] = nums[j++];
             res++;
         }
         return res + 1; //The first num didn't add res yet

@@ -17,7 +17,7 @@ class Solution {
             //DP, dp = for [m, n], the min heights.
             for (int m = 0; m < cols; m++)
                 for (int n = m; n < cols; n++) {
-                    if (m = n) dp = heights[m];
+                    if (m == n) dp = heights[m];
                     dp = Math.min(dp, heights[n]);
                     //if [m, n] is a square, figure its area.
                     if (dp == (n - m + 1)) res = Math.max(res, dp * (n - m + 1));

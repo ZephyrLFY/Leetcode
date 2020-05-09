@@ -45,6 +45,7 @@ class Solution {
                 /*这一步中的宽度计算是精髓
                 * 即对于每一个高度
                 * 计算一次由两端卡住的最大面积*/
+                //关键点：用i去减
                 res = Math.max(res, curHeight * (i - stack.peekLast() - 1));
             }
             stack.addLast(i);

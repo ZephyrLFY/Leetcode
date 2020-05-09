@@ -5,7 +5,6 @@ class Solution {
         int cols = matrix[0].length;
 
         int[] heights = new int[cols];
-        int dp = 0;
         int res = 0;
 
         for (int i = 0; i < rows; i++) {
