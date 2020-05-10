@@ -12,7 +12,7 @@ public:
 
         for (int i = 1; i < len; i++) {
             diff = prices[i] - prices[i - 1];
-            dp = max(0, dp + diff);
+            dp = max(0, dp) + diff;
             res = max(res, dp);
         }
         return res;

@@ -14,6 +14,7 @@ class Solution {
         
         for (int i = 1; i < num1 + 1; i++)
             for (int j = 1; j < num2 + 1; j++) {
+                //一定要注意这里的word1[i - 1] and word2[j - 1]中的减一，因为多出来的一行一列都在最开头而不是末尾
                 if (word1Array[i - 1] == word2Array[j - 1]) dp[i][j] = dp[i - 1][j - 1];
                 else dp[i][j] = Math.min(Math.min(dp[i - 1][j - 1], dp[i - 1][j]), dp[i][j - 1]) + 1;
             }
