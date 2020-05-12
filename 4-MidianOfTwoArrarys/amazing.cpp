@@ -11,25 +11,14 @@ public:
         nums1.push_back(2147483647);
         nums2.push_back(2147483647);
         int i = 0, j = 0;
-        while(i + j <= (len1 + len2) / 2)
+        while (i + j <= (len1 + len2) / 2)
         {
-            if(nums1[i]>= nums2[j])
-            {
-                res1 = res2;
-                res2 = nums2[j];
-                j++;
-            }
-            else
-            {
-                res1 = res2;
-                res2 = nums1[i];
-                i++;
-            }
-        }
-        if((len1 + len2) % 2 == 0)
-            return (res1 + res2)/2.0;
-        else
             res1 = res2;
-        return res1;
+            if(nums1[i]>= nums2[j]) res2 = nums2[j++];
+            else res2 = nums1[i++];
+        }
+        if ((len1 + len2) % 2 == 0)
+            return (res1 + res2) / 2.0;
+        return res2;
     }
 };
