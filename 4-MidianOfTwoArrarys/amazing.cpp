@@ -14,7 +14,7 @@ public:
         while (i + j <= (len1 + len2) / 2)
         {
             res1 = res2;
-            if(nums1[i]>= nums2[j]) res2 = nums2[j++];
+            if(nums1[i] >= nums2[j]) res2 = nums2[j++];
             else res2 = nums1[i++];
         }
         if ((len1 + len2) % 2 == 0)

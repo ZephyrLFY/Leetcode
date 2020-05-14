@@ -16,7 +16,7 @@ public:
             int i = 0;
             while (i <= n) {
                 if (bucket[25] == 0) break;
-                if (i < 26 && bucket[25 - i])
+                if (i < 26 && bucket[25 - i]) //注意这里的i < 26，不能超过桶的大小
                     bucket[25 - i]--;
                 res++;
                 i++;

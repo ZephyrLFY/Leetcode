@@ -22,7 +22,7 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
-        if (pre) pre->next = nullptr;
+        pre->next = nullptr;
         
         
         return merge(sortList(head), sortList(slow));
