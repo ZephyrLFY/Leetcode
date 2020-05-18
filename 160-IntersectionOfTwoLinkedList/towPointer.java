@@ -16,7 +16,7 @@ public class Solution {
 
         if (headA == null || headB == null) return null;
         ListNode listA = headA, listB = headB;
-        while (listA != listB) {
+        while (listA != listB) { //最巧妙的是，两者同是nullptr也是相等
             listA = listA != null ? listA.next : headB;
             listB = listB != null ? listB.next : headA;
         }

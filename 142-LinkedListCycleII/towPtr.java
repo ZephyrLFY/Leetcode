@@ -19,7 +19,6 @@ public class Solution {
          * so we can put quick back to head, let slow and faster walk one step each time together
          * when they meet, they will both be the start of loop
          * */
-        if (head == null || head.next == null) return null;
         ListNode slow = head, quick = head;
         do {
             if (quick == null || quick.next == null) return null;
