@@ -25,10 +25,3 @@ public:
         return s.substr(start, res);
     }
 };
-
-int main()
-{
-    string s = "sadsafasfadsadqwdasd";
-    Solution solution;
-    cout << solution.longestPalindrome(s) << endl;
-}
