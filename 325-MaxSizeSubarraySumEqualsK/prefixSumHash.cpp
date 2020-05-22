@@ -3,26 +3,15 @@
 class Solution {
 public:
     int maxSubArrayLen(vector<int>& nums, int k) {
-        vector<int> partialSum(nums.size(), 0);
-        int sum = 0;
-        for (int i = 0; i < nums.size(); i++) {
+        int res = 0, sum = 0;
+        int len = nums.size();
+        unordered_map<int, int> map;
+        map[0] = 0;
+        for (int i = 0; i < len; ++i) {
             sum += nums[i];
-            partialSum[i] = sum;
+            if (!map.count(sum)) map[sum] = i + 1;
+            if (map.count(sum - k)) res = max(res, i + 1 - map[sum - k]);
         }
-        
-        int ans = 0;
-        unordered_map<int, int> m;
-        m[k] = -1;
-
-        for (int i = 0; i < nums.size(); i++) {
-            if (m.find(partialSum[i])!=m.end()) {
-                ans = max(i - m[partialSum[i]], ans);
-            }
-            if (m.find(partialSum[i] + k) == m.end()) {
-                m[partialSum[i]+k] = i;
-            }
-        }
-
-        return ans;
+        return res;
     }
 };

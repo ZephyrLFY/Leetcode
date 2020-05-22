@@ -11,38 +11,33 @@ struct TreeNode {
 
 class BSTIterator {
 private:
-    stack<TreeNode*> stack;
-
+    vector<TreeNode*> stack;
 public:
     BSTIterator(TreeNode* root) {
-        if (root == NULL) return;
-        if (root->left != NULL)
-            helper(root);
-        else stack.push(root);
+        if (!root) return;
+        if (root->left) helper(root);
+        else stack.push_back(root);
     }
-
+    
     void helper(TreeNode* root) {
-        while (root->left != NULL) {
-            stack.push(root);
+        while (root->left) {
+            stack.push_back(root);
             root = root->left;
         }
-        stack.push(root);
+        stack.push_back(root);
     }
     
     /** @return the next smallest number */
     int next() {
-        TreeNode* temp = stack.top();
-        int res = temp->val;
-        stack.pop();
-        if (temp->right != NULL)
-            helper(temp->right);
-        return res;
+        TreeNode* cur = stack.back();
+        stack.pop_back();
+        if (cur->right) helper(cur->right);
+        return cur->val;
     }
     
     /** @return whether we have a next smallest number */
     bool hasNext() {
-        if (stack.empty()) return false;
-        return true;
+        return !stack.empty();
     }
 };
 
