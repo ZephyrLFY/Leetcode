@@ -17,7 +17,6 @@ public:
                 else if (s[i - 1 - dp[i - 1]] == '(') dp[i] = dp[i - 1] + 2 + dp[i - 1 - dp[i - 1] - 1];
                 res = max(res, dp[i]);
             }
-            else dp[i] = 0;
         }
         return res;
     }

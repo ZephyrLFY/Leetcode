@@ -3,8 +3,10 @@
 using namespace std;
 
 class Solution {
+private:
+    vector<vector<int>> result;
 public:
-    vector<vector<int> > permute(vector<int> &num) {
+    vector<vector<int>> permute(vector<int> &num) {
 	    permuteRecursive(num, 0);
 	    return result;
     }
@@ -16,15 +18,11 @@ public:
 		    return;
 		}
 		
-		for (int i = begin; i < num.size(); i++) {
+		for (int i = begin; i < num.size(); ++i) {
 		    swap(num[begin], num[i]);
 		    permuteRecursive(num, begin + 1);
 		    // reset
 		    swap(num[begin], num[i]);
 		}
     }
-
-private:
-    vector<vector<int> > result;
-    vector<int> path;
 };
