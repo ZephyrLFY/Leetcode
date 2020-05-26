@@ -1,55 +1,80 @@
 #include<iostream>
-#include<list>
 #include<unordered_map>
 using namespace std;
 
+struct MyListNode {
+    int key;
+    int val;
+    MyListNode* pre = nullptr;
+    MyListNode* next = nullptr;
+    MyListNode(int x, int y) : key(x), val(y) {}
+};
+
+class DoubleList {
+private:
+    MyListNode* head;
+    MyListNode* tail;
+    int size;
+public:
+    DoubleList() {
+        head = new MyListNode(0, 0);
+        tail = new MyListNode(0, 0);
+        head->next = tail;
+        tail->pre = head;
+        size = 0;
+    }
+
+    void addFirst(MyListNode* temp) {
+        temp->next = head->next;
+        head->next->pre = temp;
+        head->next = temp;
+        temp->pre = head;
+        ++size;
+    }
+
+    void remove(MyListNode* temp) {
+        temp->pre->next = temp->next;
+        temp->next->pre = temp->pre;
+        --size;
+    }
+
+    MyListNode* removeLast() {
+        MyListNode* temp = tail->pre;
+        if (temp == head) return nullptr;
+        remove(temp);
+        return temp;
+    }
+
+    int getSize() {
+        return size;
+    }
+};
+
 class LRUCache {
 private:
-    int cap;
-    // 双链表：装着 (key, value) 元组
-    list<pair<int, int>> cache;
-    // 哈希表：key 映射到 (key, value) 在 cache 中的位置
-    unordered_map<int, list<pair<int, int>>::iterator> map;
+    unordered_map<int, MyListNode*> map;
+    int nums;
+    DoubleList list;
 public:
     LRUCache(int capacity) {
-        this->cap = capacity; 
+        nums = capacity;
     }
     
     int get(int key) {
-        auto it = map.find(key);
-        // 访问的 key 不存在
-        if (it == map.end()) return -1;
-        // key 存在，把 (k, v) 换到队头
-        pair<int, int> kv = *map[key];
-        cache.erase(map[key]);
-        cache.push_front(kv);
-        // 更新 (key, value) 在 cache 中的位置
-        map[key] = cache.begin();
-        return kv.second; // value
+        if (!map.count(key)) return -1;
+        int res = map[key]->val;
+        put(key, res);
+        return res;
     }
     
     void put(int key, int value) {
-
-        /* 要先判断 key 是否已经存在 */ 
-        auto it = map.find(key);
-        if (it == map.end()) {
-            /* key 不存在，判断 cache 是否已满 */ 
-            if (cache.size() == cap) {
-                // cache 已满，删除尾部的键值对腾位置
-                // cache 和 map 中的数据都要删除
-                auto lastPair = cache.back();
-                int lastKey = lastPair.first;
-                map.erase(lastKey);
-                cache.pop_back();
-            }
-            // cache 没满，可以直接添加
-            cache.push_front(make_pair(key, value));
-            map[key] = cache.begin();
-        } else {
-            /* key 存在，更改 value 并换到队头 */
-            cache.erase(map[key]);
-            cache.push_front(make_pair(key, value));
-            map[key] = cache.begin();
+        if (map.count(key)) list.remove(map[key]);
+        else if (nums == list.getSize()) {
+            MyListNode* temp = list.removeLast();
+            map.erase(temp->key);
         }
+        MyListNode* temp = new MyListNode(key, value);
+        list.addFirst(temp);
+        map[key] = temp;
     }
 };
